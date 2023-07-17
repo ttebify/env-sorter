@@ -1,31 +1,54 @@
-import React from 'react';
+import { Box, Heading, Text, Link, Flex } from "@chakra-ui/react";
 
 function AboutAndFooter() {
   return (
-    <div className="bg-gray-100 py-8 px-4 w-full">
-      <div className="mx-auto">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">Environment Variable Sorter</h2>
-          <p className="text-lg text-gray-700 mb-8">
+    <Box bg="gray.100" py="8" px="4" width="full">
+      <Box maxW="container.md" mx="auto">
+        <Box textAlign="center">
+          <Heading as="h2" fontSize="3xl" fontWeight="bold" mb="4">
+            Environment Variable Sorter
+          </Heading>
+          <Text fontSize="lg" color="gray.700" mb="8">
             Your environment variables should be as clean as your code.
-          </p>
-          <p className="text-lg text-gray-700 mb-8">
-            Group related environment variables, add comments, and apply filters to enhance readability and organization.
-          </p>
-          <p className="text-lg text-gray-700 mb-8">
-            Check out the project on <a href="https://github.com/ttebify/env-sorter" className="text-blue-500 underline">GitHub</a>.
-          </p>
-          <div className="flex justify-center">
-            <a href="https://github.com/ttebify" className="text-blue-500 mx-2" target="_blank" rel="noopener noreferrer">
+          </Text>
+          <Text fontSize="lg" color="gray.700" mb="8">
+            Group related environment variables, add comments, and apply filters
+            to enhance readability and organization.
+          </Text>
+          <Text fontSize="lg" color="gray.700" mb="8">
+            Check out the project on
+            <Link
+              href="https://github.com/ttebify/env-sorter"
+              color="blue.500"
+              textDecoration="underline"
+              ml="1"
+              isExternal
+            >
               GitHub
-            </a>
-            <a href="https://twitter.com/ttebify" className="text-blue-500 mx-2" target="_blank" rel="noopener noreferrer">
+            </Link>
+            .
+          </Text>
+          <Flex justifyContent="center">
+            <Link
+              href="https://github.com/ttebify"
+              color="blue.500"
+              mx="2"
+              isExternal
+            >
+              GitHub
+            </Link>
+            <Link
+              href="https://twitter.com/ttebify"
+              color="blue.500"
+              mx="2"
+              isExternal
+            >
               Twitter
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Link>
+          </Flex>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

@@ -1,4 +1,14 @@
-import type { Config } from "@env/types/appTypes";
+import {
+  customSchemaItems,
+  environmentVariables,
+  environmentVariablesGroups,
+} from "@env/mock/data";
+import type {
+  Config,
+  EnvironmentVariable,
+  EnvironmentVariableGroup,
+  ParsedEnvVariable,
+} from "@env/types/appTypes";
 import type { AppContextProps, AppState } from "@env/types/contextTypes";
 import React, { createContext, useState, ReactNode, useContext } from "react";
 
@@ -12,14 +22,20 @@ function AppProvider({ children }: AppProviderProps) {
   const initialConfig: Config = {
     filters: [],
     enableComments: false,
+    loading: false,
     darkMode: false,
-    commentSchema: [],
+    commentSchema: customSchemaItems,
   };
 
-  const initialEnvVariables = "";
+  const initialEnvVariables = environmentVariables;
+  const initialEnvVariablesGroups = environmentVariablesGroups;
 
   const [config, setConfig] = useState<Config>(initialConfig);
-  const [envVariables, setEnvVariables] = useState<string>(initialEnvVariables);
+  const [envVariables, setEnvVariables] =
+    useState<EnvironmentVariable[]>(initialEnvVariables);
+  const [envVariablesGroups, setEnvVariablesGroups] = useState<
+    EnvironmentVariableGroup[]
+  >(initialEnvVariablesGroups);
 
   const updateConfig = (newConfig: Partial<Config>) => {
     setConfig((prevConfig) => ({
@@ -27,13 +43,15 @@ function AppProvider({ children }: AppProviderProps) {
       ...newConfig,
     }));
   };
-
-  const updateEnvVariables = (newEnvVariables: string) => {
-    setEnvVariables(newEnvVariables);
+  const updateEnvVariables = (parsedEnvVariable: ParsedEnvVariable) => {
+    const { groups, variables } = parsedEnvVariable;
+    setEnvVariables(variables);
+    setEnvVariablesGroups(groups);
   };
 
   const state: AppState = {
     config,
+    envVariablesGroups,
     envVariables,
   };
 

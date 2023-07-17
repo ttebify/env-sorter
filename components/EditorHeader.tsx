@@ -1,9 +1,11 @@
+import { Box, Button, Text } from "@chakra-ui/react";
 import { useAppContext } from "@env/contexts/AppContext";
+import { Field, Form, FormLayout } from "@saas-ui/react";
 import React, { useState } from "react";
 
 function EditorHeader() {
   const { state, updateConfig } = useAppContext();
-  const isLightTheme = state.config.darkMode ? false : true;
+  const isLightTheme = state.config.darkMode;
 
   const handleThemeToggle = () => {
     const newConfig = {
@@ -13,30 +15,22 @@ function EditorHeader() {
   };
 
   return (
-    <div className="flex justify-between w-full">
-      <div>
-        <p>
-          <span className="text-sm">from</span>&nbsp;
-          <span className="text-gray-500">Ttebify</span>
-        </p>
-        <p className="text-lg font-semibold mb-4">
+    <Box display="flex" justifyContent="space-between" width="full" px={4}>
+      <Box>
+        <Text fontSize="lg" fontWeight="semibold" marginBottom="4">
           Environment Variables Sorter
-        </p>
-        <p>Your environment variables should be as clean as your code.</p>
-      </div>
-      <button
-        className={`bg-gray-200 rounded-full w-12 h-6 flex items-center justify-${
-          isLightTheme ? "start" : "end"
-        } transition-colors duration-300`}
-        onClick={handleThemeToggle}
+        </Text>
+        <Text>Your environment variables should be as clean as your code.</Text>
+      </Box>
+      <Form
+        onSubmit={handleThemeToggle}
+        defaultValues={{ theme: isLightTheme }}
       >
-        <span
-          className={`bg-white rounded-full w-4 h-4 ${
-            isLightTheme ? "ml-1" : "mr-1"
-          } transition-transform duration-300 transform`}
-        ></span>
-      </button>
-    </div>
+        <FormLayout>
+          <Field type="switch" name="theme" label="Dark mode" />
+        </FormLayout>
+      </Form>
+    </Box>
   );
 }
 

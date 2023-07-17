@@ -1,3 +1,4 @@
+import { Button, Flex } from "@chakra-ui/react";
 import React from "react";
 
 function SortingContainer() {
@@ -17,20 +18,31 @@ function SortingContainer() {
   };
 
   return (
-    <div className="flex shadow rounded-md border px-2">
-      <button
-        className="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-l-md"
+    <Flex shadow="md" rounded="md" border="1px" px="2">
+      <Button
+        bg="white"
+        _hover={{ bg: "gray.100" }}
+        color="gray.700"
+        fontWeight="semibold"
+        py="2"
+        px="4"
+        roundedLeft="md"
         onClick={handleSortAZ}
       >
         Sort A-Z
-      </button>
-      <button
-        className="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4"
+      </Button>
+      <Button
+        bg="white"
+        _hover={{ bg: "gray.100" }}
+        color="gray.700"
+        fontWeight="semibold"
+        py="2"
+        px="4"
         onClick={handleSortZA}
       >
         Sort Z-A
-      </button>
-    </div>
+      </Button>
+    </Flex>
   );
 }
 
